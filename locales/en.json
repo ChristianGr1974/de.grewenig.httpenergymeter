@@ -1,0 +1,14 @@
+{
+  "greeting": "Hello, __name__",
+  "settings": {
+    "title": "My Title",
+    "intro": "This is an example page."
+  },
+  "pair": {
+    "title": "Find Energy Meter",
+    "url": {
+      "message": "Please enter the base URL to the metering service.",
+      "description:": ""
+    }
+  }
+}
