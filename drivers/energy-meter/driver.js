@@ -1,11 +1,65 @@
 "use strict";
-
+const fetch = require("node-fetch");
 const Homey = require("homey");
 
 class HttpEnergyMeterDriver extends Homey.Driver {
-  /*async onPair(session) {
+  async onPair(session) {
     this.log("HttpEnergyMeterDriver pairing started");
-  }*/
+    let pairIpAddress;
+    let devices = [];
+
+    session.setHandler("ipAddress", async ({ ipAddress }) => {
+      try {
+        pairIpAddress = ipAddress;
+        devices = this.verifyMeterService(ipAddress);
+        await session.nextView();
+        return true;
+      } catch (error) {
+        //await session.showView("error");
+        this.log("HttpEnergyMeterDriver pairing failed");
+        return false;
+      }
+    });
+
+    session.setHandler("list_devices", async () => {
+      return devices;
+    });
+  }
+
+  async verifyMeterService(ipAddress) {
+    const response = await this.makeRequest(ipAddress);
+
+    var json = await response.json();
+
+    this.log("Received json:" + JSON.stringify(json));
+
+    var devices = [
+      {
+        name: "Http Energy Meter",
+        data: {
+          id: json.id,
+        },
+        settings: {
+          ipAddress: ipAddress,
+        },
+      },
+    ];
+
+    return devices;
+  }
+
+  async makeRequest(ipAddress) {
+    const response = await fetch(`http://${ipAddress}/api/meter/actual`);
+
+    if (response.ok)
+      //{
+      return response;
+    //} else if (response.status >= 400 && response.status < 500) {
+    //throw "Invalid credentials or session expired";
+    //}
+
+    throw new Error("Metering service connection failed");
+  }
 
   /**
    * onInit is called when the driver is initialized.

@@ -9,6 +9,12 @@
     "url": {
       "message": "Please enter the base URL to the metering service.",
       "description:": ""
+    },
+    "ipAddress": {
+      "message": "Please enter the base URL to the metering service.",
+      "description:": "",
+      "ipAddressPlaceholder": "IP Address",
+      "submit": "Connect"
     }
   }
 }

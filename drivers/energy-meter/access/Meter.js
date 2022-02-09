@@ -1,21 +1,8 @@
-const http = require("http");
-
-const actualRequestOptions = {
-  hostname: "192.168.0.155",
-  port: 8000,
-  path: "/actual",
-  method: "GET",
-};
-
-const totalRequestOptions = {
-  hostname: "192.168.0.155",
-  port: 8000,
-  path: "/total",
-  method: "GET",
-};
+const fetch = require("node-fetch");
 
 class Meter {
   device;
+  ipAddress;
 
   async start() {
     this.updateInterval = this.device.homey.setInterval(
@@ -32,52 +19,33 @@ class Meter {
     this.device.log("Updating actual meter values");
     var theDevice = this.device;
 
-    var callback = function (response) {
-      var str = "";
+    this.device.log(`make request: http://${this.ipAddress}/api/meter/actual`);
 
-      //another chunk of data has been received, so append it to `str`
-      response.on("data", function (chunk) {
-        str += chunk;
-      });
+    const response = await fetch(`http://${this.ipAddress}/api/meter/actual`);
 
-      //the whole response has been received, so we just print it out here
-      response.on("end", function () {
-        theDevice.log(str);
-        var json = JSON.parse(str);
-        var actual = json.actual;
-        theDevice
-          .setCapabilityValue("measure_power", actual)
-          .catch(theDevice.error);
-      });
-    };
+    if (response.ok) {
+      var json = await response.json();
 
-    http.request(actualRequestOptions, callback).end();
+      this.device.log("Received json:" + JSON.stringify(json));
+
+      var actual = json.actual;
+      theDevice
+        .setCapabilityValue("measure_power", actual)
+        .catch(theDevice.error);
+    }
   }
 
   async updateTotal() {
     this.device.log("Updating actual meter values");
     var theDevice = this.device;
 
-    var callback = function (response) {
-      var str = "";
+    const response = await fetch(`http://${this.ipAddress}/api/meter/total`);
 
-      //another chunk of data has been received, so append it to `str`
-      response.on("data", function (chunk) {
-        str += chunk;
-      });
-
-      //the whole response has been received, so we just print it out here
-      response.on("end", function () {
-        theDevice.log(str);
-        var json = JSON.parse(str);
-        var total = json.total;
-        theDevice
-          .setCapabilityValue("meter_power", total)
-          .catch(theDevice.error);
-      });
-    };
-
-    http.request(totalRequestOptions, callback).end();
+    if (response.ok) {
+      var json = await response.json();
+      var actual = json.total;
+      theDevice.setCapabilityValue("meter_power", total).catch(theDevice.error);
+    }
   }
 
   async updateDeviceState() {

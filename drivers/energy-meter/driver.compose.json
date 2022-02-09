@@ -14,7 +14,30 @@
   "energy": {
     "cumulative": true
   },
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Connection"
+      },
+      "children": [
+        {
+          "id": "ipAddress",
+          "type": "text",
+          "label": {
+            "en": "IP Address"
+          },
+          "hint": {
+            "en": "The IP address or hostname of your metering device."
+          }
+        }
+      ]
+    }
+  ],
   "pair": [
+    {
+      "id": "ipAddress"
+    },
     {
       "id": "list_my_devices",
       "template": "list_devices",

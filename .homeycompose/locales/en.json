@@ -6,9 +6,11 @@
   },
   "pair": {
     "title": "Find Energy Meter",
-    "url": {
+    "ipAddress": {
       "message": "Please enter the base URL to the metering service.",
-      "description:": ""
+      "description:": "",
+      "ipAddressPlaceholder": "IP Address",
+      "submit": "Connect"
     }
   }
 }
