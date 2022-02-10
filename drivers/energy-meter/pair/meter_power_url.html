@@ -1,0 +1,23 @@
+<div class="form-group">
+    <div class="input-field">
+        <label><span data-i18n="pair.meter_power.message" /></label>
+        <input type="text" id="url_meter" placeholder="" value="" />
+    </div>
+
+    <button class="submit-button" id="submit_meter" data-i18n="pair.next"></button>
+</div>
+
+<script type="text/javascript">
+    $(() => {
+
+        $("#url_meter").attr(
+            "value",
+            $("#url_measure").val()
+        );
+
+        $("#submit_meter").click(() => {
+            var url = $("#url_meter").val();
+            Homey.emit("meter_power_url", { url });
+        });
+    });
+</script>

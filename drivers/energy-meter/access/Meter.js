@@ -2,7 +2,10 @@ const fetch = require("node-fetch");
 
 class Meter {
   device;
-  ipAddress;
+  measure_power_url;
+  meter_power_url;
+  measure_property;
+  meter_property;
 
   async start() {
     this.updateInterval = this.device.homey.setInterval(
@@ -19,16 +22,19 @@ class Meter {
     this.device.log("Updating actual meter values");
     var theDevice = this.device;
 
-    this.device.log(`make request: http://${this.ipAddress}/api/meter/actual`);
+    this.device.log(`make request: ${this.measure_power_url}`);
 
-    const response = await fetch(`http://${this.ipAddress}/api/meter/actual`);
+    const response = await fetch(this.measure_power_url);
 
     if (response.ok) {
       var json = await response.json();
 
       this.device.log("Received json:" + JSON.stringify(json));
 
-      var actual = json.actual;
+      var actual = json[this.measure_property];
+
+      this.device.log(`Try to get property: ${this.measure_property}`);
+
       theDevice
         .setCapabilityValue("measure_power", actual)
         .catch(theDevice.error);
@@ -36,14 +42,14 @@ class Meter {
   }
 
   async updateTotal() {
-    this.device.log("Updating actual meter values");
+    this.device.log("Updating total meter values");
     var theDevice = this.device;
 
-    const response = await fetch(`http://${this.ipAddress}/api/meter/total`);
+    const response = await fetch(this.meter_power_url);
 
     if (response.ok) {
       var json = await response.json();
-      var actual = json.total;
+      var total = json[this.meter_property];
       theDevice.setCapabilityValue("meter_power", total).catch(theDevice.error);
     }
   }

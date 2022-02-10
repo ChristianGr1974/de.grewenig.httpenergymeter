@@ -1,0 +1,39 @@
+<style type="text/css">
+    .form-group,
+    .input-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-field {
+        margin-top: 10px;
+    }
+
+    .submit-button {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="form-group">
+    <div class="input-field">
+        <label><span data-i18n="pair.measure_power.message" /></label>
+        <input type="text" id="url_measure" placeholder="" value="http://192.168.0.155:8085/api/meter/actual" />
+    </div>
+
+    <button class="submit-button" id="submit_measure" data-i18n="pair.next"></button>
+</div>
+
+<script type="text/javascript">
+    $(() => {
+        $("#url_measure").attr(
+            "placeholder",
+            Homey.__("pair.measure_power.urlPlaceholder")
+        );
+
+        $("#submit_measure").click(() => {
+            var url = $("#url_measure").val();
+            Homey.emit("measure_power_url", { url });
+        });
+    });
+</script>

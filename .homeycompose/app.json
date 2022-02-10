@@ -3,18 +3,16 @@
   "version": "1.0.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
-  "platforms": [
-    "local"
-  ],
+  "platforms": ["local"],
   "name": {
-    "en": "http-energy-meter"
+    "en": "HTTP Energy Meter",
+    "de": "HTTP Stromzähler"
   },
   "description": {
-    "en": "A http energy meter"
+    "en": "A virtual energy meter via HTTP",
+    "de": "Ein virtueller Stromzähler über HTTP"
   },
-  "category": [
-    "energy"
-  ],
+  "category": ["energy"],
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",

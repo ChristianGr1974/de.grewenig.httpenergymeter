@@ -8,7 +8,8 @@
     "local"
   ],
   "name": {
-    "en": "http-energy-meter"
+    "en": "HTTP Energy Meter",
+    "de": "HTTP Stromzähler"
   },
   "description": {
     "en": "A http energy meter"
@@ -29,7 +30,8 @@
   "drivers": [
     {
       "name": {
-        "en": "energy-meter"
+        "en": "Energy Meter",
+        "de": "Stromzähler"
       },
       "class": "other",
       "capabilities": [
@@ -52,17 +54,65 @@
         {
           "type": "group",
           "label": {
-            "en": "Connection"
+            "en": "Measure",
+            "de": "Leistung"
           },
           "children": [
             {
-              "id": "ipAddress",
+              "id": "measure_power_url",
               "type": "text",
               "label": {
-                "en": "IP Address"
+                "en": "Measure Power URL (W)",
+                "de": "Leistung URL (W)"
               },
               "hint": {
-                "en": "The IP address or hostname of your metering device."
+                "en": "The url to the power measure of your metering device.",
+                "de": "Die URL zum REST Service für die Leistung."
+              }
+            },
+            {
+              "id": "measure_property",
+              "type": "text",
+              "label": {
+                "en": "Value Property",
+                "de": "Wert Eigenschaft"
+              },
+              "hint": {
+                "en": "The property of the incoming json that represents the measurement value.",
+                "de": "Das json Property, welches den Wert für die Leistung enthält."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Meter",
+            "de": "Energie"
+          },
+          "children": [
+            {
+              "id": "meter_power_url",
+              "type": "text",
+              "label": {
+                "en": "Meter Power URL (kWh)",
+                "de": "Energie URL (kWh)"
+              },
+              "hint": {
+                "en": "The url to the meter measure of your metering device.",
+                "de": "Die URL zum REST Service für die Energie"
+              }
+            },
+            {
+              "id": "meter_property",
+              "type": "text",
+              "label": {
+                "en": "Value Property",
+                "de": "Wert Eigenschaft"
+              },
+              "hint": {
+                "en": "The property of the incoming json that represents the metering value.",
+                "de": "Das json Property, welches den Wert für die Energie enthält."
               }
             }
           ]
@@ -70,7 +120,16 @@
       ],
       "pair": [
         {
-          "id": "ipAddress"
+          "id": "measure_power_url"
+        },
+        {
+          "id": "measure_property"
+        },
+        {
+          "id": "meter_power_url"
+        },
+        {
+          "id": "meter_property"
         },
         {
           "id": "list_my_devices",

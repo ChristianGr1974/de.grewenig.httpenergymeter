@@ -6,11 +6,19 @@
   },
   "pair": {
     "title": "Find Energy Meter",
-    "ipAddress": {
-      "message": "Please enter the base URL to the metering service.",
+    "submit": "Connect",
+    "next": "Next",
+    "measure_power": {
+      "message": "Please enter the power measure URL.",
       "description:": "",
-      "ipAddressPlaceholder": "IP Address",
-      "submit": "Connect"
+      "urlPlaceholder": "Power Measure URL (W)",
+      "property": "Value Property"
+    },
+    "meter_power": {
+      "message": "Please enter the power meter URL.",
+      "description:": "",
+      "urlPlaceholder": "Power Measure URL (kWh)",
+      "property": "Value Property"
     }
   }
 }

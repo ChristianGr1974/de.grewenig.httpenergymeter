@@ -8,16 +8,30 @@ class HttpEnergyMeterDevice extends Homey.Device {
    * onInit is called when the device is initialized.
    */
   async onInit() {
-    const { ipAddress } = this.getSettings();
+    const {
+      measure_power_url,
+      meter_power_url,
+      measure_property,
+      meter_property,
+    } = this.getSettings();
 
-    this.log(`HttpEnergyMeterDevice (${ipAddress}) has been initialized`);
+    this.log(`HttpEnergyMeterDevice has been initialized`);
 
     this.log("Device init");
     this.log("Name:", this.getName());
     this.log("Class:", this.getClass());
+
+    this.log(`measure_power_url=${measure_power_url}`);
+    this.log(`meter_power_url=${meter_power_url}`);
+    this.log(`measure_property=${measure_property}`);
+    this.log(`meter_property=${meter_property}`);
+
     this.meter = new Meter();
 
-    this.meter.ipAddress = ipAddress;
+    this.meter.measure_power_url = measure_power_url;
+    this.meter.meter_power_url = meter_power_url;
+    this.meter.measure_property = measure_property;
+    this.meter.meter_property = meter_property;
     this.meter.device = this;
     this.meter.start();
   }

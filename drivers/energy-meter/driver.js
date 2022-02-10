@@ -5,17 +5,46 @@ const Homey = require("homey");
 class HttpEnergyMeterDriver extends Homey.Driver {
   async onPair(session) {
     this.log("HttpEnergyMeterDriver pairing started");
-    let pairIpAddress;
+    let measure_power_url;
+    let measure_property;
+    let meter_power_url;
+    let meter_property;
     let devices = [];
 
-    session.setHandler("ipAddress", async ({ ipAddress }) => {
+    session.setHandler("measure_power_url", async ({ url }) => {
+      this.log("HttpEnergyMeterDriver measure power url set:" + url);
+      measure_power_url = url;
+      await session.nextView();
+      return true;
+    });
+
+    session.setHandler("measure_property", async ({ property }) => {
+      this.log("HttpEnergyMeterDriver measure power property set:" + property);
+      measure_property = property;
+      await session.nextView();
+      return true;
+    });
+
+    session.setHandler("meter_power_url", async ({ url }) => {
+      this.log("HttpEnergyMeterDriver meter power url set:" + url);
+      meter_power_url = url;
+      await session.nextView();
+      return true;
+    });
+
+    session.setHandler("meter_property", async ({ property }) => {
       try {
-        pairIpAddress = ipAddress;
-        devices = this.verifyMeterService(ipAddress);
+        this.log("HttpEnergyMeterDriver meter power property set:" + property);
+        meter_property = property;
+        devices = this.verifyMeterService(
+          measure_power_url,
+          meter_power_url,
+          measure_property,
+          meter_property
+        );
         await session.nextView();
         return true;
       } catch (error) {
-        //await session.showView("error");
         this.log("HttpEnergyMeterDriver pairing failed");
         return false;
       }
@@ -26,12 +55,22 @@ class HttpEnergyMeterDriver extends Homey.Driver {
     });
   }
 
-  async verifyMeterService(ipAddress) {
-    const response = await this.makeRequest(ipAddress);
+  async createDevices() {}
+
+  async verifyMeterService(
+    measure_power_url,
+    meter_power_url,
+    measure_property,
+    meter_property
+  ) {
+    const response = await this.makeRequest(measure_power_url);
 
     var json = await response.json();
-
     this.log("Received json:" + JSON.stringify(json));
+    this.log(`measure_power_url=${measure_power_url}`);
+    this.log(`meter_power_url=${meter_power_url}`);
+    this.log(`measure_property=${measure_property}`);
+    this.log(`meter_property=${meter_property}`);
 
     var devices = [
       {
@@ -40,7 +79,10 @@ class HttpEnergyMeterDriver extends Homey.Driver {
           id: json.id,
         },
         settings: {
-          ipAddress: ipAddress,
+          measure_power_url: measure_power_url,
+          meter_power_url: meter_power_url,
+          measure_property: measure_property,
+          meter_property: meter_property,
         },
       },
     ];
@@ -48,8 +90,8 @@ class HttpEnergyMeterDriver extends Homey.Driver {
     return devices;
   }
 
-  async makeRequest(ipAddress) {
-    const response = await fetch(`http://${ipAddress}/api/meter/actual`);
+  async makeRequest(url) {
+    const response = await fetch(url);
 
     if (response.ok)
       //{
@@ -85,7 +127,7 @@ class HttpEnergyMeterDriver extends Homey.Driver {
    * This should return an array with the data of devices that are available for pairing.
    */
   async onPairListDevices() {
-    return [
+    /*return [
       {
         name: "My Energy Meter",
         data: {
@@ -95,7 +137,7 @@ class HttpEnergyMeterDriver extends Homey.Driver {
           address: "192.168.0.155",
         },
       },
-    ];
+    ];*/
   }
 }
 

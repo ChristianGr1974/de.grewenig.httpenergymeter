@@ -1,0 +1,34 @@
+<style type="text/css">
+    .form-group,
+    .input-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-field {
+        margin-top: 10px;
+    }
+
+    .submit-button {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="form-group">
+    <div class="input-field">
+        <label><span data-i18n="pair.meter_power.property" /></label>
+        <input type="text" id="meter_property" placeholder="" value="" />
+    </div>
+
+    <button class="submit-button" id="submit_meter_property" data-i18n="pair.submit"></button>
+</div>
+
+<script type="text/javascript">
+    $(() => {
+        $("#submit_meter_property").click(() => {
+            var property = $("#meter_property").val();
+            Homey.emit("meter_property", { property });
+        });
+    });
+</script>
