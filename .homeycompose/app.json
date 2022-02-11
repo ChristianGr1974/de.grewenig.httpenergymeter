@@ -17,6 +17,9 @@
     "en": ["power", "energy", "smart meter", "metering", "HTTP"],
     "de": ["Leistung", "Verbrauch", "Zähler", "Stromzähler", "Watt", "HTTP"]
   },
+  "bugs": {
+    "url": "https://github.com/ChristianGr1974/de.grewenig.httpenergymeter/issues"
+  },
   "category": ["energy"],
   "permissions": [],
   "images": {
