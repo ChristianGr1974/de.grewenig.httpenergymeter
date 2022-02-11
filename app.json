@@ -33,6 +33,9 @@
       "HTTP"
     ]
   },
+  "bugs": {
+    "url": "https://github.com/ChristianGr1974/de.grewenig.httpenergymeter/issues"
+  },
   "category": [
     "energy"
   ],
