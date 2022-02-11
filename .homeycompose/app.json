@@ -4,13 +4,18 @@
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": ["local"],
+  "brandColor": "#FF4040",
   "name": {
     "en": "HTTP Energy Meter",
     "de": "HTTP Stromzähler"
   },
   "description": {
-    "en": "A virtual energy meter via HTTP",
-    "de": "Ein virtueller Stromzähler über HTTP"
+    "en": "Read your consumption data from your energy meter via HTTP.",
+    "de": "Lesen Sie Ihre Verbrauchsdaten von Ihrem Energiezähler über HTTP ab."
+  },
+  "tags": {
+    "en": ["power", "energy", "smart meter", "metering", "HTTP"],
+    "de": ["Leistung", "Verbrauch", "Zähler", "Stromzähler", "Watt", "HTTP"]
   },
   "category": ["energy"],
   "permissions": [],
