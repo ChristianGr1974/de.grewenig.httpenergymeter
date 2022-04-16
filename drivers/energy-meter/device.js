@@ -10,6 +10,11 @@ class HttpEnergyMeterDevice extends Homey.Device {
   async onInit() {
     var settings = this.getSettings();
 
+    if(settings.is_solarpanel) {
+      this.setClass("solarpanel");
+      this.setEnergy(Object); // remove the energys object "cumulative"
+    }
+
     this.log(`HttpEnergyMeterDevice has been initialized`);
 
     this.meter = new MeterDevice(settings, this);
@@ -40,6 +45,8 @@ class HttpEnergyMeterDevice extends Homey.Device {
     this.log("OldSettings=" + strOldSettings);
     this.log("NewSettings=" + strNewSettings);
     this.log("ChangedKeys=" + strChangedKeys);
+
+
 
     await this.meter.stop();
     await this.meter.reloadSettings(newSettings);

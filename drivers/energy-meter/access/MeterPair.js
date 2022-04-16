@@ -101,7 +101,8 @@ class MeterPair {
             measure_property: this.measure_property,
             meter_property: this.meter_property,
             measure_property_factor: this.measure_property_factor,
-            meter_property_factor: this.meter_property_factor
+            meter_property_factor: this.meter_property_factor,
+            is_solarpanel: false 
           },
         },
       ];

@@ -17,6 +17,19 @@
   },
   "settings": [
     {
+      "id": "is_solarpanel",
+      "type": "checkbox",
+      "value": false,
+      "label": {
+        "en": "Solar plant / Inverter",
+        "de": "Solaranlage / Wechselrichter"
+      },
+      "hint": {
+        "en": "Is the meter an Inverter of a solar plant?",
+        "de": "Ist der Zähler ein Wechselrichter einer Solaranlage?"
+      }
+    },
+    {
       "type": "group",
       "label": {
         "en": "Measure",

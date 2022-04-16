@@ -74,6 +74,19 @@
       },
       "settings": [
         {
+          "id": "is_solarpanel",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Solar plant / Inverter",
+            "de": "Solaranlage / Wechselrichter"
+          },
+          "hint": {
+            "en": "Is the meter an Inverter of a solar plant?",
+            "de": "Ist der Zähler ein Wechselrichter einer Solaranlage?"
+          }
+        },
+        {
           "type": "group",
           "label": {
             "en": "Measure",
@@ -112,8 +125,8 @@
                 "de": "Faktor für Wert Eigenschaft"
               },
               "hint": {
-                "en": "The property of the incoming json that represents the measurement value.",
-                "de": "Das json Property, welches den Wert für die Leistung enthält."
+                "en": "A factor to scale the measurement value.",
+                "de": "Ein Faktor zum skalieren des Messwertes"
               }
             }
           ]
@@ -157,8 +170,8 @@
                 "de": "Faktor für Wert Eigenschaft"
               },
               "hint": {
-                "en": "The property of the incoming json that represents the metering value.",
-                "de": "Das json Property, welches den Wert für die Energie enthält."
+                "en": "A factor to scale the measurement value.",
+                "de": "Ein Faktor zum skalieren des Messwertes"
               }
             }
           ]
