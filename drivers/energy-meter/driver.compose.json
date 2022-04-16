@@ -46,6 +46,18 @@
             "en": "The property of the incoming json that represents the measurement value.",
             "de": "Das json Property, welches den Wert für die Leistung enthält."
           }
+        },
+        {
+          "id": "measure_property_factor",
+          "type": "number",
+          "label": {
+            "en": "Value Property factor",
+            "de": "Faktor für Wert Eigenschaft"
+          },
+          "hint": {
+            "en": "A factor to scale the measurement value.",
+            "de": "Ein Faktor zum skalieren des Messwertes"
+          }
         }
       ]
     },
@@ -78,6 +90,18 @@
           "hint": {
             "en": "The property of the incoming json that represents the metering value.",
             "de": "Das json Property, welches den Wert für die Energie enthält."
+          }
+        },
+        {
+          "id": "meter_property_factor",
+          "type": "number",
+          "label": {
+            "en": "Value Property factor",
+            "de": "Faktor für Wert Eigenschaft"
+          },
+          "hint": {
+            "en": "A factor to scale the measurement value.",
+            "de": "Ein Faktor zum skalieren des Messwertes"
           }
         }
       ]

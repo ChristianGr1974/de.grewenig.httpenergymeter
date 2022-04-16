@@ -8,6 +8,8 @@ class MeterPair {
     this.measure_property = "";
     this.meter_power_url = "";
     this.meter_property = "";
+    this.measure_property_factor = 1.0;
+    this.meter_property_factor = 1.0;
     this.devices = [];
   }
 
@@ -98,6 +100,8 @@ class MeterPair {
             meter_power_url: this.meter_power_url,
             measure_property: this.measure_property,
             meter_property: this.meter_property,
+            measure_property_factor: this.measure_property_factor,
+            meter_property_factor: this.meter_property_factor
           },
         },
       ];
