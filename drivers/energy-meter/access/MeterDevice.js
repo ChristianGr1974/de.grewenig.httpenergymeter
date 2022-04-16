@@ -43,15 +43,14 @@ class MeterDevice {
 
       if (response.ok) {
         var json = await response.json();
-        if (json === undefined) return;
+        const value = this.getPropertyValue(this.measure_property, json);
 
-        if (!json.hasOwnProperty(this.measure_property)) return;
+        if (!value) return;
 
-        var actual = json[this.measure_property];
-        this.device.log("Actual=" + actual);
+        this.device.log("Actual=" + value);
 
         this.device
-          .setCapabilityValue("measure_power", actual)
+          .setCapabilityValue("measure_power", value)
           .catch(theDevice.error);
       }
     } catch (error) {}
@@ -62,19 +61,27 @@ class MeterDevice {
       const response = await fetch(this.meter_power_url);
 
       if (response.ok) {
-        var json = await response.json();
-        if (json === undefined) return;
+        var json = await response.json();  
+        const value = this.getPropertyValue(this.meter_property, json);
+        if (!value) return;
 
-        if (!json.hasOwnProperty(this.meter_property)) return;
-
-        var total = json[this.meter_property];
-        this.device.log("Total=" + total);
+        this.device.log("Total=" + value);
 
         this.device
-          .setCapabilityValue("meter_power", total)
+          .setCapabilityValue("meter_power", value)
           .catch(theDevice.error);
       }
     } catch (error) {}
+  }
+
+/**
+ * 
+ * @param {*} path path.to.property
+ * @param {*} object 
+ * @returns null if property not found
+ */
+  getPropertyValue(path, object) {
+    return path.split('.').reduce((p,c)=>p&&p[c]||null, object);
   }
 
   async updateDeviceState() {
