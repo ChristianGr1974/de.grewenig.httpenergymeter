@@ -30,5 +30,12 @@
   "author": {
     "name": "Christian Grewenig",
     "email": "christian@grewenig.de"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "chriszero"
+      }
+    ]
   }
 }
