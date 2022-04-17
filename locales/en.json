@@ -23,7 +23,7 @@
       "urlPlaceholder": "Power Measure URL (W)",
       "next": "next",
       "submit": "next",
-      "property": "Value Property"
+      "property": "The property that carries the measured value "
     },
     "meter_power": {
       "message": "Please enter the power meter URL.",
@@ -31,10 +31,16 @@
       "ipAddressPlaceholder": "Power Measure URL (kWh)",
       "urlPlaceholder": "Power Measure URL (kWh)",
       "submit": "Connect",
-      "property": "Value Property"
+      "property": "The property that carries the metered value"
     },
     "submit": "Connect",
-    "next": "Next"
+    "next": "Next",
+    "id": {
+      "message": "Please enter name a property to identify your device.",
+      "description:": "This property will be used to identify your device in your homey setup.",
+      "urlPlaceholder": "id",
+      "property": "Id Property"
+    }
   },
   "submit": "Connect",
   "next": "next"

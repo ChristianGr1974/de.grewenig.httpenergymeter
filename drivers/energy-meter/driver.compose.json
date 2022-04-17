@@ -118,6 +118,28 @@
           }
         }
       ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Id",
+        "de": "Id"
+      },
+      "children": [
+        {
+          "id": "id_property",
+          "type": "text",
+          "label": {
+            "en": "Id Property",
+            "de": "Id Property"
+          },
+          "value": "id",
+          "hint": {
+            "en": "The property identifying your device.",
+            "de": "Das Property, welches dein Gerät identifiziert."
+          }
+        }
+      ]
     }
   ],
   "pair": [
@@ -132,6 +154,9 @@
     },
     {
       "id": "meter_property"
+    },
+    {
+      "id": "id_property"
     },
     {
       "id": "list_my_devices",

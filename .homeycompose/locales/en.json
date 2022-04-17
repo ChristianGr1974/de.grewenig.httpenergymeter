@@ -12,13 +12,19 @@
       "message": "Please enter the power measure URL.",
       "description:": "",
       "urlPlaceholder": "Power Measure URL (W)",
-      "property": "Value Property"
+      "property": "The property that carries the measured value "
     },
     "meter_power": {
       "message": "Please enter the power meter URL.",
       "description:": "",
       "urlPlaceholder": "Power Measure URL (kWh)",
-      "property": "Value Property"
+      "property": "The property that carries the metered value"
+    },
+    "id": {
+      "message": "Please enter name a property to identify your device.",
+      "description:": "This property will be used to identify your device in your homey setup.",
+      "urlPlaceholder": "id",
+      "property": "Id Property"
     }
   }
 }
