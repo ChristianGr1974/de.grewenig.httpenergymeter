@@ -8,6 +8,7 @@ class MeterPair {
     this.measure_property = "";
     this.meter_power_url = "";
     this.meter_property = "";
+    this.id_property = "";
     this.devices = [];
   }
 
@@ -16,6 +17,7 @@ class MeterPair {
     this.setMeasurePowerProperty();
     this.setMeterPowerUrl();
     this.setMeterPowerProperty();
+    this.setIdProperty();
     this.setHandlerListDevices();
   }
 
@@ -54,8 +56,17 @@ class MeterPair {
         "HttpEnergyMeterDriver meter power property set:" + property
       );
       this.meter_property = property;
-      this.devices = await this.verifyMeterService();
+      await this.session.nextView();
+      return true;
+    });
+  }
 
+  async setIdProperty() {
+    this.session.setHandler("id_property", async ({ id }) => {
+      this.driver.log("HttpEnergyMeterDriver id property set:" + id);
+      this.id_property = id;
+
+      this.devices = await this.verifyMeterService();
       this.driver.log(`devices=${this.devices}`);
 
       if (this.devices == undefined) {
@@ -78,20 +89,26 @@ class MeterPair {
     try {
       const response = await this.makeRequest(this.measure_power_url);
 
+      var id = "id";
       var json = await response.json();
       if (!json.hasOwnProperty("id")) return undefined;
+      if (this.id_property !== undefined && this.id_property != "")
+        id = this.id_property;
+
+      var idValue = json[id];
 
       this.driver.log("Received json:" + JSON.stringify(json));
       this.driver.log(`measure_power_url=${this.measure_power_url}`);
       this.driver.log(`meter_power_url=${this.meter_power_url}`);
       this.driver.log(`measure_property=${this.measure_property}`);
       this.driver.log(`meter_property=${this.meter_property}`);
+      this.driver.log(`id read=${idValue}`);
 
       var devices = [
         {
           name: "Http Energy Meter",
           data: {
-            id: json.id,
+            id: idValue,
           },
           settings: {
             measure_power_url: this.measure_power_url,

@@ -1,0 +1,34 @@
+<style type="text/css">
+    .form-group,
+    .input-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-field {
+        margin-top: 10px;
+    }
+
+    .submit-button {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="form-group">
+    <div class="input-field">
+        <label><span data-i18n="pair.id.property" /></label>
+        <input type="text" id="id_property" placeholder="" value="" />
+    </div>
+
+    <button class="submit-button" id="submit_id_property" data-i18n="pair.submit"></button>
+</div>
+
+<script type="text/javascript">
+    $(() => {
+        $("#submit_id_property").click(() => {
+            var property = $("#id_property").val();
+            Homey.emit("id_property", { property });
+        });
+    });
+</script>
