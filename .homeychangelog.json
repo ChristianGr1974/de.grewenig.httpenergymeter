@@ -1,5 +1,8 @@
 {
   "1.0.0": {
     "en": "First release"
+  },
+  "1.1.0": {
+    "en": "Added id property to identify a device.\nAdded a factor property to scale the total value.\nAdded a flag to show device as a solar panel."
   }
 }
