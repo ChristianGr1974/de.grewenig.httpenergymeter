@@ -49,6 +49,20 @@
     "name": "Christian Grewenig",
     "email": "christian@grewenig.de"
   },
+  "contributors": {
+    "developers": [
+      {
+        "name": "chriszero"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "christiangr1974"
+      }
+    }
+  },
   "drivers": [
     {
       "name": {
