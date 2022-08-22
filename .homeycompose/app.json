@@ -1,9 +1,11 @@
 {
   "id": "de.grewenig.httpenergymeter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "brandColor": "#FF4040",
   "name": {
     "en": "HTTP Energy Meter",
@@ -14,13 +16,28 @@
     "de": "Lesen Sie Ihre Verbrauchsdaten von Ihrem Energiezähler über HTTP ab."
   },
   "tags": {
-    "en": ["power", "energy", "smart meter", "metering", "HTTP"],
-    "de": ["Leistung", "Verbrauch", "Zähler", "Stromzähler", "Watt", "HTTP"]
+    "en": [
+      "power",
+      "energy",
+      "smart meter",
+      "metering",
+      "HTTP"
+    ],
+    "de": [
+      "Leistung",
+      "Verbrauch",
+      "Zähler",
+      "Stromzähler",
+      "Watt",
+      "HTTP"
+    ]
   },
   "bugs": {
     "url": "https://github.com/ChristianGr1974/de.grewenig.httpenergymeter/issues"
   },
-  "category": ["energy"],
+  "category": [
+    "energy"
+  ],
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",
