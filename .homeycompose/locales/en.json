@@ -6,25 +6,83 @@
   },
   "pair": {
     "title": "Find Energy Meter",
-    "submit": "Connect",
-    "next": "Next",
+    "connection": {
+      "title": "Connection settings",
+      "ipAddress": "IP-Address"
+    },
+    "url": {
+      "message": "Please enter the base URL to the metering service.",
+      "description:": ""
+    },
+    "ipAddress": {
+      "message": "Please enter the base URL to the metering service.",
+      "description:": "",
+      "ipAddressPlaceholder": "IP Address",
+      "submit": "Connect"
+    },
     "measure_power": {
       "message": "Please enter the power measure URL.",
       "description:": "",
+      "ipAddressPlaceholder": "Power Measure URL (W)",
       "urlPlaceholder": "Power Measure URL (W)",
+      "next": "next",
+      "submit": "next",
       "property": "The property that carries the measured value "
     },
     "meter_power": {
       "message": "Please enter the power meter URL.",
       "description:": "",
+      "ipAddressPlaceholder": "Power Measure URL (kWh)",
       "urlPlaceholder": "Power Measure URL (kWh)",
+      "submit": "Connect",
       "property": "The property that carries the metered value"
     },
+    "submit": "Connect",
+    "next": "Next",
     "id": {
       "message": "Please enter name a property to identify your device.",
       "description:": "This property will be used to identify your device in your homey setup.",
       "urlPlaceholder": "id",
       "property": "Id Property"
     }
+  },
+  "submit": "Connect",
+  "next": "next",
+  "electricMeter": {
+    "connection": {
+      "title": "Connection settings",
+      "baseUrl": {
+        "label": "Base URL",
+        "description": "The base URL of your REST API, including the protocol and IP or hostname.",
+        "placeholder": "http://192.168.0.155:8000"
+      },
+      "measure_power_path": {
+        "label": "Current Consumption Endpoint",
+        "description": "The path to retrieve the current power consumption. e.g. '/myapi/total'",
+        "placeholder": "/total"
+      },
+      "meter_power_path": {
+        "label": "Total Consumption Endpoint",
+        "description": "The path to retrieve the total energy consumed. e.g. '/myapi/current'",
+        "placeholder": "/current"
+      },
+      "measures_exported": {
+        "label": "Measures Exported Energy",
+        "description": "Does this energy meter also measure exported energy?"        
+      },
+      "meter_power_exported_path": {
+        "label": "Total Production Endpoint",
+        "description": "The path to retrieve the total generated energy. e.g. '/myapi/exported'",
+        "placeholder": "/exported"
+      },
+      "measure_power_exported_path": {
+        "label": "Current Production Endpoint",
+        "description": "The path to retrieve the current power production. e.g. '/myapi/current'",
+        "placeholder": "/current"
+      },
+      "is_solarpanel": "Is solar panel",
+      "is_cumulative": "Is cumulative"
+    },
+    "next": "Next"
   }
 }

@@ -1,0 +1,41 @@
+<style type="text/css">
+    .button-margin {
+        margin-top: 5pt !important;
+    }
+</style>
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="pair.connection.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+    </h1>
+    <!-- <p class="homey-subtitle" data-i18n="deviceAddress.ipAddress">            
+        </p> -->
+</header>
+<form class="homey-form">
+    <fieldset class="homey-form-checkbox-set">
+        <label class="homey-form-checkbox">
+            <input class="homey-form-checkbox-input" type="checkbox" id="is_cumulative"/>
+            <span class="homey-form-checkbox-checkmark"></span>
+            <span class="homey-form-checkbox-text" data-i18n="meterV2.connection.is_cumulative"></span>
+        </label>
+    </fieldset>
+</form>
+<button class="homey-button-primary-full button-margin" id="submitIsCumulative"
+    data-i18n="meterV2.next"></button>
+
+<script type="application/javascript">
+    $(() => {
+        let state = false;
+        
+        $("#submitIsCumulative").click(() => {
+            var is_cumulative = $("#is_cumulative").prop("checked");
+            Homey.emit("is_cumulative", {
+                is_cumulative: is_cumulative,
+                state: state
+            });
+        });
+
+        Homey.on('state', function(value) {
+            state = value;
+        });
+    });    
+</script>

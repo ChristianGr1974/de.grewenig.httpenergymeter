@@ -1,0 +1,131 @@
+{
+  "name": {
+    "en": "Electric Meter",
+    "de": "Stromzähler"
+  },
+  "class": "sensor",
+  "virtualClass": "energy",
+  "capabilities": [
+    "measure_power", 
+    "meter_power"
+  ],
+  "platforms": ["local"],
+  "connectivity": [],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "energy": {    
+    "type": "meter",
+    "meterPowerImportedCapability": "meter_power"
+  },
+  "capabilitiesOptions": {
+    "measure_power": {
+      "title": {
+        "en": "Power total",
+        "nl": "Vermogen totaal"
+      },
+      "decimals": 2
+    },
+    "meter_power": {
+      "title": {
+        "en": "Energy meter total",
+        "nl": "Energie totaal"
+      },
+      "decimals": 4
+    }    
+  },
+  "settings": [  
+    {
+      "type": "group",
+      "label": {
+        "en": "General",
+        "de": "Allgemein"
+      },
+      "children": [
+        {
+          "id": "baseUrl",
+          "type": "text",
+          "label": {
+            "en": "Base URL",
+            "de": "Base URL"
+          },
+          "hint": {
+            "en": "The base URL of your metering device.",
+            "de": "Die Basis URL des REST Service für den Stromzähler."
+          }
+        },
+        {
+      "id": "isCumulative",
+      "type": "checkbox",
+      "value": false,
+      "label": {
+        "en": "Is cumulated?",
+        "de": "Ist kumuliert?"
+      },
+      "hint": {
+        "en": "Is the meter cumulative?",
+        "de": "Ist der Zähler kumuliert?"
+      }
+    }   
+      ]
+    },  
+    {
+      "type": "group",
+      "label": {
+        "en": "Measure",
+        "de": "Leistung"
+      },
+      "children": [        
+        {
+          "id": "measure_power_path",
+          "type": "text",
+          "label": {
+            "en": "Measure Power URL (W)",
+            "de": "Leistung URL (W)"
+          },
+          "hint": {
+            "en": "The url to the power measure of your metering device.",
+            "de": "Die URL zum REST Service für die Leistung."
+          }
+        }        
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Meter",
+        "de": "Energie"
+      },
+      "children": [
+        {
+          "id": "meter_power_path",
+          "type": "text",
+          "label": {
+            "en": "Path for total consumption (kWh)",
+            "de": "Pfad für Gesamtverbrauch (kWh)"
+          },
+          "hint": {
+            "en": "The path to the total consumption of your metering device.",
+            "de": "Der Pfad zum Gesamtverbrauch des Stromzählers."
+          }
+        }
+      ]
+    }
+  ],
+  "pair": [
+    {
+      "id": "connectionSettings"
+    },    
+    {
+      "id": "list_my_devices",
+      "template": "list_devices",
+      "navigation": { "next": "add_my_devices" }
+    },
+    {
+      "id": "add_my_devices",
+      "template": "add_devices"
+    }
+  ]
+}

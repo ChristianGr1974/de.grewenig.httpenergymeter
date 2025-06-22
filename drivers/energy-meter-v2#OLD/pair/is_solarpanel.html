@@ -1,0 +1,32 @@
+<style type="text/css">
+    .button-margin {
+        margin-top: 5pt !important;
+    }
+</style>
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="pair.connection.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+    </h1>
+    <!-- <p class="homey-subtitle" data-i18n="deviceAddress.ipAddress">            
+        </p> -->
+</header>
+<form class="homey-form">
+    <fieldset class="homey-form-checkbox-set">
+        <label class="homey-form-checkbox">
+            <input class="homey-form-checkbox-input" type="checkbox" id="is_solarpanel"/>
+            <span class="homey-form-checkbox-checkmark"></span>
+            <span class="homey-form-checkbox-text" data-i18n="meterV2.connection.is_solarpanel"></span>
+        </label>
+    </fieldset>
+</form>
+<button class="homey-button-primary-full button-margin" id="submitIsSolarPanel"
+    data-i18n="meterV2.next"></button>
+
+<script type="application/javascript">
+    $(() => {
+        $("#submitIsSolarPanel").click(() => {
+            var is_solarpanel = $("#is_solarpanel").prop("checked");
+            Homey.emit("is_solarpanel", is_solarpanel);
+        });
+    });    
+</script>

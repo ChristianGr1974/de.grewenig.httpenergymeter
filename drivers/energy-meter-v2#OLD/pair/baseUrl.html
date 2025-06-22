@@ -1,0 +1,31 @@
+<style type="text/css">
+    .button-margin {
+        margin-top: 5pt !important;
+    }
+</style>
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="meterV2.connection.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+    </h1>
+    <!-- <p class="homey-subtitle" data-i18n="deviceAddress.ipAddress">            
+        </p> -->
+</header>
+<form class="homey-form">
+    <fieldset class="homey-form-fieldset">
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="ipAddress" data-i18n="meterV2.connection.baseUrl.label" />
+            <input class="homey-form-input" id="ipAddress" type="text" value="http://192.168.0.155:8000" />
+        </div>
+    </fieldset>
+</form>
+<button class="homey-button-primary-full button-margin" id="submitIpAddress"
+    data-i18n="meterV2.next"></button>
+
+<script type="application/javascript">
+    $(() => {
+        $("#submitIpAddress").click(() => {
+            var ipAddress = $("#ipAddress").val();
+            Homey.emit("baseUrl", ipAddress );
+        });
+    });    
+</script>

@@ -1,8 +1,8 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "de.grewenig.httpenergymeter",
-  "version": "1.1.1",
-  "compatibility": ">=5.0.0",
+  "version": "1.2.1",
+  "compatibility": ">=12.2.0",
   "sdk": 3,
   "platforms": [
     "local"
@@ -66,8 +66,144 @@
   "drivers": [
     {
       "name": {
-        "en": "Energy Meter",
+        "en": "Electric Meter",
         "de": "Stromzähler"
+      },
+      "class": "sensor",
+      "virtualClass": "energy",
+      "capabilities": [
+        "measure_power",
+        "meter_power"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/electric-meter/assets/images/small.png",
+        "large": "/drivers/electric-meter/assets/images/large.png",
+        "xlarge": "/drivers/electric-meter/assets/images/xlarge.png"
+      },
+      "energy": {
+        "type": "meter",
+        "meterPowerImportedCapability": "meter_power"
+      },
+      "capabilitiesOptions": {
+        "measure_power": {
+          "title": {
+            "en": "Power total",
+            "nl": "Vermogen totaal"
+          },
+          "decimals": 2
+        },
+        "meter_power": {
+          "title": {
+            "en": "Energy meter total",
+            "nl": "Energie totaal"
+          },
+          "decimals": 4
+        }
+      },
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "General",
+            "de": "Allgemein"
+          },
+          "children": [
+            {
+              "id": "baseUrl",
+              "type": "text",
+              "label": {
+                "en": "Base URL",
+                "de": "Base URL"
+              },
+              "hint": {
+                "en": "The base URL of your metering device.",
+                "de": "Die Basis URL des REST Service für den Stromzähler."
+              }
+            },
+            {
+              "id": "isCumulative",
+              "type": "checkbox",
+              "value": false,
+              "label": {
+                "en": "Is cumulated?",
+                "de": "Ist kumuliert?"
+              },
+              "hint": {
+                "en": "Is the meter cumulative?",
+                "de": "Ist der Zähler kumuliert?"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Measure",
+            "de": "Leistung"
+          },
+          "children": [
+            {
+              "id": "measure_power_path",
+              "type": "text",
+              "label": {
+                "en": "Measure Power URL (W)",
+                "de": "Leistung URL (W)"
+              },
+              "hint": {
+                "en": "The url to the power measure of your metering device.",
+                "de": "Die URL zum REST Service für die Leistung."
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Meter",
+            "de": "Energie"
+          },
+          "children": [
+            {
+              "id": "meter_power_path",
+              "type": "text",
+              "label": {
+                "en": "Path for total consumption (kWh)",
+                "de": "Pfad für Gesamtverbrauch (kWh)"
+              },
+              "hint": {
+                "en": "The path to the total consumption of your metering device.",
+                "de": "Der Pfad zum Gesamtverbrauch des Stromzählers."
+              }
+            }
+          ]
+        }
+      ],
+      "pair": [
+        {
+          "id": "connectionSettings"
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "electric-meter"
+    },
+    {
+      "name": {
+        "en": "[DEPRECATED] Energy Meter",
+        "de": "[DEPRECATED] Stromzähler"
       },
       "class": "other",
       "capabilities": [
@@ -242,6 +378,230 @@
         }
       ],
       "id": "energy-meter"
+    },
+    {
+      "name": {
+        "en": "Energy Meter V2",
+        "de": "Stromzähler V2"
+      },
+      "class": "sensor",
+      "virtualClass": "energy",
+      "capabilities": [
+        "measure_power",
+        "meter_power",
+        "meter_power.imported",
+        "meter_power.exported"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "images": {
+        "small": "/drivers/energy-meter-v2#OLD/assets/images/small.png",
+        "large": "/drivers/energy-meter-v2#OLD/assets/images/large.png",
+        "xlarge": "/drivers/energy-meter-v2#OLD/assets/images/xlarge.png"
+      },
+      "energy": {
+        "cumulative": true,
+        "type": "meter",
+        "cumulativeImportedCapability": "meter_power.imported",
+        "cumulativeExportedCapability": "meter_power.exported"
+      },
+      "capabilitiesOptions": {
+        "measure_power": {
+          "title": {
+            "en": "Power total",
+            "nl": "Vermogen totaal"
+          },
+          "decimals": 2
+        },
+        "meter_power": {
+          "title": {
+            "en": "Energy meter total",
+            "nl": "Energie totaal"
+          },
+          "decimals": 4
+        },
+        "meter_power.imported": {
+          "title": {
+            "en": "Imported energy",
+            "nl": "Energie import"
+          },
+          "decimals": 4
+        },
+        "meter_power.exported": {
+          "title": {
+            "en": "Exported energy",
+            "nl": "Energie export"
+          },
+          "decimals": 4
+        }
+      },
+      "settings": [
+        {
+          "id": "is_solarpanel",
+          "type": "checkbox",
+          "value": false,
+          "label": {
+            "en": "Solar plant / Inverter",
+            "de": "Solaranlage / Wechselrichter"
+          },
+          "hint": {
+            "en": "Is the meter an Inverter of a solar plant?",
+            "de": "Ist der Zähler ein Wechselrichter einer Solaranlage?"
+          }
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Measure",
+            "de": "Leistung"
+          },
+          "children": [
+            {
+              "id": "measure_power_url",
+              "type": "text",
+              "label": {
+                "en": "Measure Power URL (W)",
+                "de": "Leistung URL (W)"
+              },
+              "hint": {
+                "en": "The url to the power measure of your metering device.",
+                "de": "Die URL zum REST Service für die Leistung."
+              }
+            },
+            {
+              "id": "measure_property",
+              "type": "text",
+              "label": {
+                "en": "Value Property",
+                "de": "Wert Eigenschaft"
+              },
+              "hint": {
+                "en": "The property of the incoming json that represents the measurement value.",
+                "de": "Das json Property, welches den Wert für die Leistung enthält."
+              }
+            },
+            {
+              "id": "measure_property_factor",
+              "type": "number",
+              "label": {
+                "en": "Value Property factor",
+                "de": "Faktor für Wert Eigenschaft"
+              },
+              "hint": {
+                "en": "A factor to scale the measurement value.",
+                "de": "Ein Faktor zum skalieren des Messwertes"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Meter",
+            "de": "Energie"
+          },
+          "children": [
+            {
+              "id": "meter_power_url",
+              "type": "text",
+              "label": {
+                "en": "Meter Power URL (kWh)",
+                "de": "Energie URL (kWh)"
+              },
+              "hint": {
+                "en": "The url to the meter measure of your metering device.",
+                "de": "Die URL zum REST Service für die Energie"
+              }
+            },
+            {
+              "id": "meter_property",
+              "type": "text",
+              "label": {
+                "en": "Value Property",
+                "de": "Wert Eigenschaft"
+              },
+              "hint": {
+                "en": "The property of the incoming json that represents the metering value.",
+                "de": "Das json Property, welches den Wert für die Energie enthält."
+              }
+            },
+            {
+              "id": "meter_property_factor",
+              "type": "number",
+              "label": {
+                "en": "Value Property factor",
+                "de": "Faktor für Wert Eigenschaft"
+              },
+              "hint": {
+                "en": "A factor to scale the measurement value.",
+                "de": "Ein Faktor zum skalieren des Messwertes"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Id",
+            "de": "Id"
+          },
+          "children": [
+            {
+              "id": "id_property",
+              "type": "text",
+              "label": {
+                "en": "Id Property",
+                "de": "Id Property"
+              },
+              "value": "id",
+              "hint": {
+                "en": "The property identifying your device.",
+                "de": "Das Property, welches dein Gerät identifiziert."
+              }
+            }
+          ]
+        }
+      ],
+      "pair": [
+        {
+          "id": "baseUrl"
+        },
+        {
+          "id": "measure_power_path"
+        },
+        {
+          "id": "meter_power_path"
+        },
+        {
+          "id": "measures_exported"
+        },
+        {
+          "id": "measure_power_exported_path"
+        },
+        {
+          "id": "meter_power_exported_path"
+        },
+        {
+          "id": "is_cumulative"
+        },
+        {
+          "id": "is_solarpanel"
+        },
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "energy-meter-v2#OLD"
     }
   ]
 }

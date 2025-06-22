@@ -1,0 +1,53 @@
+<style type="text/css">
+    .button-margin {
+        margin-top: 5pt !important;
+    }
+</style>
+<header class="homey-header">
+    <h1 class="homey-title" data-i18n="electricMeter.connection.title">
+        <!-- This will be filled with the translated string with key 'settings.title'. -->
+    </h1>
+    <!-- <p class="homey-subtitle" data-i18n="deviceAddress.ipAddress">            
+        </p> -->
+</header>
+<form class="homey-form">
+    <fieldset class="homey-form-fieldset">        
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="baseUrl" data-i18n="electricMeter.connection.baseUrl.label" />
+            <input class="homey-form-input" id="baseUrl" type="text" value="http://192.168.0.155:8000" />
+        </div>
+         
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="measure_power_path" data-i18n="electricMeter.connection.measure_power_path.label" />
+            <input class="homey-form-input" id="measure_power_path" type="text" value="/power/imported/current" />
+        </div>
+          
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="meter_power_path" data-i18n="electricMeter.connection.meter_power_path.label" />
+            <input class="homey-form-input" id="meter_power_path" type="text" value="/power/imported/total" />
+        </div>
+         
+        <label class="homey-form-checkbox">
+            <input class="homey-form-checkbox-input" type="checkbox" id="isCumulative"/>
+            <span class="homey-form-checkbox-checkmark"></span>
+            <span class="homey-form-checkbox-text" data-i18n="electricMeter.connection.is_cumulative"></span>
+        </label>
+    </fieldset>
+</form>
+<button class="homey-button-primary-full button-margin" id="submitConnectionSettings"
+    data-i18n="electricMeter.next"></button>
+
+<script type="application/javascript">
+    $(() => {
+        $("#submitConnectionSettings").click(() => {
+            const connectionSettings = {
+                baseUrl: $("#baseUrl").val(),
+                measure_power_path: $("#measure_power_path").val(),
+                meter_power_path: $("#meter_power_path").val(),
+                isCumulative: $("#isCumulative").is(":checked")
+            };
+            
+            Homey.emit("connectionSettings", connectionSettings );
+        });
+    });    
+</script>
